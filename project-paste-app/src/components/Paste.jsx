@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { removeFromPastes } from '../redux/pasteSlice';
 
 const Paste = () => {
 
@@ -9,6 +10,9 @@ const Paste = () => {
 
     const filteredData = pastes.filter((paste) => paste.title.toLowerCase().includes(searchTerm.toLocaleLowerCase()));
 
+    function handleDelete(pasteId) {
+        dispatch(removeFromPastes(pasteId));
+    }
 
 
   return (
@@ -39,7 +43,7 @@ const Paste = () => {
                                 <button>
                                     View
                                 </button>
-                                <button>
+                                <button onClick={() => handleDelete(paste?._id)}>
                                     Delete
                                 </button>
                                 <button>
