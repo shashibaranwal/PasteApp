@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeFromPastes } from '../redux/pasteSlice';
+import toast from 'react-hot-toast'
 
 const Paste = () => {
 
@@ -12,6 +13,10 @@ const Paste = () => {
 
     function handleDelete(pasteId) {
         dispatch(removeFromPastes(pasteId));
+    }
+    function handleCopy(pasteContent) {
+        navigator.clipboard.writeText(pasteContent);
+        toast.success("note copied successfully")
     }
 
 
@@ -46,7 +51,7 @@ const Paste = () => {
                                 <button onClick={() => handleDelete(paste?._id)}>
                                     Delete
                                 </button>
-                                <button>
+                                <button onClick={() => handleCopy(paste?.content)}>
                                     Copy
                                 </button>
                                 <button>
