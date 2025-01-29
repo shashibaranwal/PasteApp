@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import {Link} from 'react-router-dom'
 import { removeFromPastes } from '../redux/pasteSlice';
 import toast from 'react-hot-toast'
 
@@ -17,6 +18,11 @@ const Paste = () => {
     function handleCopy(pasteContent) {
         navigator.clipboard.writeText(pasteContent);
         toast.success("note copied successfully")
+    }
+
+    function handleShare(shareData){
+        navigator.clipboard.writeText(shareData);
+        toast.success("link copied successfully")
     }
 
 
@@ -46,7 +52,7 @@ const Paste = () => {
                                     Edit
                                 </button>
                                 <button>
-                                    View
+                                    <Link to={`/pastes/${paste?._id}`}>View</Link>
                                 </button>
                                 <button onClick={() => handleDelete(paste?._id)}>
                                     Delete
@@ -54,7 +60,7 @@ const Paste = () => {
                                 <button onClick={() => handleCopy(paste?.content)}>
                                     Copy
                                 </button>
-                                <button>
+                                <button onClick={() => handleShare(paste?.navigator)}>
                                     Share
                                 </button>
                             </div>
