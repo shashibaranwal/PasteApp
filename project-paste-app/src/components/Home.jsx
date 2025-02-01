@@ -8,7 +8,7 @@ const Home = () => {
     const [title, setTitle] = useState('');
     const [value, setValue] = useState('');
     const [searchParams, setSearchParams] = useSearchParams();
-    const pasteId = searchParams.get("pasteId");
+    const pasteId = searchParams.get('pasteId');
     const dispatch = useDispatch();
     const allPastes = useSelector((state) => state.paste.pastes);
 
@@ -19,9 +19,6 @@ const Home = () => {
             console.log("page found");
             setTitle(paste.title);
             setValue(paste.content);
-
-        } else{
-            console.log("no pasteId");
         }
         
     }, [pasteId]);
