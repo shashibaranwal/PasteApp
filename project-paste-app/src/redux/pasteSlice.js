@@ -23,7 +23,7 @@ export const pasteSlice = createSlice({
 
         if( index >= 0) {
             state.pastes[index] = paste
-            localStorage.setItem("pastes", JSON.stingify(state.pastes))
+            localStorage.setItem("pastes", JSON.stringify(state.pastes))
             toast.success("Note uploaded")
         }
     },
